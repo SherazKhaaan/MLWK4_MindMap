@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trees and Ensembles Mind Map</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .mindmap {
+            position: relative;
+            width: 900px;
+            height: 600px;
+            margin: 20px 0;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .node {
+            position: absolute;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .node:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .red {
+            background-color: #ffcccc;
+            border: 2px solid #e60000;
+            color: #990000;
+        }
+        .blue {
+            background-color: #cce5ff;
+            border: 2px solid #0066cc;
+            color: #004080;
+        }
+        .green {
+            background-color: #ccffcc;
+            border: 2px solid #00cc00;
+            color: #006600;
+        }
+        #infoPanel {
+            width: 900px;
+            min-height: 150px;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .infoTitle {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .infoContent {
+            line-height: 1.5;
+        }
+        line {
+            stroke: #999;
+            stroke-width: 2;
+        }
+        .legend {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        .legendItem {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legendBox {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Decision Trees and Ensemble Methods</h1>
+        
+        <div class="mindmap" id="mindmap">
+            <!-- SVG for lines -->
+            <svg width="900" height="600" style="position: absolute; top: 0; left: 0;">
+                <!-- Main branches -->
+                <line x1="450" y1="300" x2="200" y2="150" />
+                <line x1="450" y1="300" x2="700" y2="150" />
+                <line x1="450" y1="300" x2="200" y2="450" />
+                <line x1="450" y1="300" x2="700" y2="450" />
+                
+                <!-- Decision Tree branches -->
+                <line x1="200" y1="150" x2="120" y2="80" />
+                <line x1="200" y1="150" x2="280" y2="80" />
+                <line x1="200" y1="150" x2="120" y2="220" />
+                <line x1="200" y1="150" x2="280" y2="220" />
+                
+                <!-- Random Forest branches -->
+                <line x1="700" y1="150" x2="620" y2="80" />
+                <line x1="700" y1="150" x2="780" y2="80" />
+                <line x1="700" y1="150" x2="620" y2="220" />
+                <line x1="700" y1="150" x2="780" y2="220" />
+                
+                <!-- Ensemble branches -->
+                <line x1="200" y1="450" x2="120" y2="380" />
+                <line x1="200" y1="450" x2="280" y2="380" />
+                <line x1="200" y1="450" x2="120" y2="520" />
+                
+                <!-- Boosting branches -->
+                <line x1="700" y1="450" x2="620" y2="380" />
+                <line x1="700" y1="450" x2="780" y2="380" />
+                <line x1="700" y1="450" x2="620" y2="520" />
+                <line x1="700" y1="450" x2="780" y2="520" />
+            </svg>
+            
+            <!-- Nodes -->
+            <div class="node red" style="width: 150px; top: 275px; left: 375px;" 
+                onclick="showInfo('Trees and Ensembles', 
+                '&lt;ul&gt;&lt;li&gt;Trees and ensemble methods are <span class=&quot;highlight&quot;>powerful machine learning techniques</span>.&lt;/li&gt;&lt;li&gt;Decision trees provide an <span class=&quot;highlight&quot;>intuitive way</span> to make decisions based on feature values.&lt;/li&gt;&lt;li&gt;Ensemble methods combine multiple models to <span class=&quot;highlight&quot;>improve performance</span>.&lt;/li&gt;&lt;li&gt;Together, they form the foundation for effective algorithms on tabular data.&lt;/li&gt;&lt;/ul&gt;')">
+                Trees and Ensembles
+            </div>
+            
+            <!-- Decision Trees -->
+            <div class="node blue" style="width: 120px; top: 125px; left: 140px;" 
+                onclick="showInfo('Decision Trees', 
+                '&lt;ul&gt;&lt;li&gt;Decision trees are <span class=&quot;highlight&quot;>supervised models</span> that recursively partition the feature space.&lt;/li&gt;&lt;li&gt;They make binary splits based on criteria such as <span class=&quot;highlight&quot;>information gain</span> or <span class=&quot;highlight&quot;>impurity reduction</span>.&lt;/li&gt;&lt;li&gt;Highly interpretable but prone to <span class=&quot;highlight&quot;>overfitting</span> without regularization.&lt;/li&gt;&lt;/ul&gt;')">
+                Decision Trees
+            </div>
+            <div class="node green" style="width: 90px; top: 55px; left: 75px;" 
+                onclick="showInfo('Tree Structure', 
+                '&lt;ul&gt;&lt;li&gt;A binary tree consists of a <span class=&quot;highlight&quot;>root</span> (no parent), <span class=&quot;highlight&quot;>internal nodes</span> (with both parent and children), and <span class=&quot;highlight&quot;>leaves</span> (terminal nodes).&lt;/li&gt;&lt;li&gt;Each internal node represents a decision based on a feature value.&lt;/li&gt;&lt;/ul&gt;')">
+                Structure
+            </div>
+            <div class="node green" style="width: 90px; top: 55px; left: 235px;" 
+                onclick="showInfo('CART Algorithm', 
+                '&lt;ul&gt;&lt;li&gt;CART (Classification And Regression Trees) is a <span class=&quot;highlight&quot;>greedy algorithm</span> for building trees.&lt;/li&gt;&lt;li&gt;It minimizes the <span class=&quot;highlight&quot;>impurity</span> (or squared error) at each split.&lt;/li&gt;&lt;li&gt;Time complexity is approximately O(d·n·log n).&lt;/li&gt;&lt;/ul&gt;')">
+                CART
+            </div>
+            <div class="node green" style="width: 90px; top: 195px; left: 75px;" 
+                onclick="showInfo('Advantages', 
+                '&lt;ul&gt;&lt;li&gt;Decision trees are <span class=&quot;highlight&quot;>intuitive</span> and easy to interpret.&lt;/li&gt;&lt;li&gt;They can model <span class=&quot;highlight&quot;>complex interactions</span> and non-linear boundaries.&lt;/li&gt;&lt;/ul&gt;')">
+                Advantages
+            </div>
+            <div class="node green" style="width: 90px; top: 195px; left: 235px;" 
+                onclick="showInfo('Limitations', 
+                '&lt;ul&gt;&lt;li&gt;They struggle with modeling <span class=&quot;highlight&quot;>smooth</span> and <span class=&quot;highlight&quot;>additive functions</span>.&lt;/li&gt;&lt;li&gt;Tend to have <span class=&quot;highlight&quot;>high variance</span> and can overfit.&lt;/li&gt;&lt;/ul&gt;')">
+                Limitations
+            </div>
+            
+            <!-- Random Forests -->
+            <div class="node blue" style="width: 120px; top: 125px; left: 640px;" 
+                onclick="showInfo('Random Forests', 
+                '&lt;ul&gt;&lt;li&gt;Random forests are ensembles of decision trees built on <span class=&quot;highlight&quot;>bootstrapped</span> samples.&lt;/li&gt;&lt;li&gt;At each split, a random subset of features is considered (<span class=&quot;highlight&quot;>mtry</span>).&lt;/li&gt;&lt;li&gt;They reduce variance by averaging predictions.&lt;/li&gt;&lt;/ul&gt;')">
+                Random Forests
+            </div>
+            <div class="node green" style="width: 100px; top: 55px; left: 570px;" 
+                onclick="showInfo('Bagging Process', 
+                '&lt;ul&gt;&lt;li&gt;Random forests use <span class=&quot;highlight&quot;>bagging</span> (bootstrap aggregation) to create diverse training sets.&lt;/li&gt;&lt;li&gt;Each tree is trained on a bootstrap sample, where some data points are repeated and about 37% are left out.&lt;/li&gt;&lt;/ul&gt;')">
+                Bagging
+            </div>
+            <div class="node green" style="width: 100px; top: 55px; left: 730px;" 
+                onclick="showInfo('Feature Sampling', 
+                '&lt;ul&gt;&lt;li&gt;At each node, only a random subset of features is considered.&lt;/li&gt;&lt;li&gt;Typical values: √d for classification and d/3 for regression.&lt;/li&gt;&lt;/ul&gt;')">
+                Feature Sampling
+            </div>
+            <div class="node green" style="width: 100px; top: 195px; left: 570px;" 
+                onclick="showInfo('Variable Importance', 
+                '&lt;ul&gt;&lt;li&gt;Random forests provide measures such as <span class=&quot;highlight&quot;>impurity reduction</span> and <span class=&quot;highlight&quot;>permutation importance</span> to assess feature importance.&lt;/li&gt;&lt;/ul&gt;')">
+                Variable Importance
+            </div>
+            <div class="node green" style="width: 100px; top: 195px; left: 730px;" 
+                onclick="showInfo('RF Parameters', 
+                '&lt;ul&gt;&lt;li&gt;Key parameters: number of trees (B), features per split (mtry), and tree depth.&lt;/li&gt;&lt;li&gt;Increasing trees reduces variance, while deeper trees risk overfitting.&lt;/li&gt;&lt;/ul&gt;')">
+                Parameters
+            </div>
+            
+            <!-- Ensemble Methods -->
+            <div class="node blue" style="width: 120px; top: 425px; left: 140px;" 
+                onclick="showInfo('Ensemble Methods', 
+                '&lt;ul&gt;&lt;li&gt;Ensemble methods <span class=&quot;highlight&quot;>combine multiple models</span> to improve prediction performance.&lt;/li&gt;&lt;li&gt;They leverage the &quot;<span class=&quot;highlight&quot;>&amp;quot;wisdom of crowds&amp;quot;</span>&quot; principle to reduce errors.&lt;/li&gt;&lt;li&gt;Ensembles reduce variance and enhance stability.&lt;/li&gt;&lt;/ul&gt;')">
+                Ensemble Methods
+            </div>
+            <div class="node green" style="width: 90px; top: 355px; left: 75px;" 
+                onclick="showInfo('Stacking', 
+                '&lt;ul&gt;&lt;li&gt;Stacking learns a <span class=&quot;highlight&quot;>linear combination</span> of base model predictions.&lt;/li&gt;&lt;li&gt;A meta-model is trained on a validation set to optimize weights.&lt;/li&gt;&lt;/ul&gt;')">
+                Stacking
+            </div>
+            <div class="node green" style="width: 90px; top: 355px; left: 235px;" 
+                onclick="showInfo('Bagging', 
+                '&lt;ul&gt;&lt;li&gt;Bagging (Bootstrap Aggregation) trains models on different bootstrap samples.&lt;/li&gt;&lt;li&gt;Predictions are averaged (regression) or voted (classification) to reduce variance.&lt;/li&gt;&lt;/ul&gt;')">
+                Bagging
+            </div>
+            <div class="node green" style="width: 90px; top: 495px; left: 75px;" 
+                onclick="showInfo('Model Diversity', 
+                '&lt;ul&gt;&lt;li&gt;Ensemble performance improves when individual models make <span class=&quot;highlight&quot;>different errors</span>.&lt;/li&gt;&lt;li&gt;Diversity can be achieved by varying training data, features, or algorithms.&lt;/li&gt;&lt;/ul&gt;')">
+                Model Diversity
+            </div>
+            
+            <!-- Boosting -->
+            <div class="node blue" style="width: 120px; top: 425px; left: 640px;" 
+                onclick="showInfo('Boosting', 
+                '&lt;ul&gt;&lt;li&gt;Boosting builds models <span class=&quot;highlight&quot;>sequentially</span>, with each model correcting the errors of the previous ones.&lt;/li&gt;&lt;li&gt;It reweights training examples so that misclassified cases gain more influence.&lt;/li&gt;&lt;/ul&gt;')">
+                Boosting
+            </div>
+            <div class="node green" style="width: 100px; top: 355px; left: 570px;" 
+                onclick="showInfo('AdaBoost', 
+                '&lt;ul&gt;&lt;li&gt;AdaBoost adjusts weights for misclassified examples in each iteration.&lt;/li&gt;&lt;li&gt;Each weak learner is assigned a weight based on its performance.&lt;/li&gt;&lt;/ul&gt;')">
+                AdaBoost
+            </div>
+            <div class="node green" style="width: 100px; top: 355px; left: 730px;" 
+                onclick="showInfo('Gradient Boosting', 
+                '&lt;ul&gt;&lt;li&gt;Gradient Boosting fits new models to the <span class=&quot;highlight&quot;>negative gradient</span> of the loss function.&lt;/li&gt;&lt;li&gt;Key parameters include <span class=&quot;highlight&quot;>tree depth</span>, <span class=&quot;highlight&quot;>rounds</span>, and <span class=&quot;highlight&quot;>learning rate</span>.&lt;/li&gt;&lt;/ul&gt;')">
+                Gradient Boosting
+            </div>
+            <div class="node green" style="width: 100px; top: 495px; left: 570px;" 
+                onclick="showInfo('Boosting Parameters', 
+                '&lt;ul&gt;&lt;li&gt;Parameters: number of rounds, learning rate, and tree complexity.&lt;/li&gt;&lt;li&gt;Early stopping can prevent overfitting.&lt;/li&gt;&lt;/ul&gt;')">
+                Parameters
+            </div>
+            <div class="node green" style="width: 100px; top: 495px; left: 730px;" 
+                onclick="showInfo('XGBoost &amp; LightGBM', 
+                '&lt;ul&gt;&lt;li&gt;Optimized implementations of gradient boosting.&lt;/li&gt;&lt;li&gt;They include regularization, efficient split finding, and parallel processing.&lt;/li&gt;&lt;/ul&gt;')">
+                XGBoost/LightGBM
+            </div>
+        </div>
+        
+        <div id="infoPanel">
+            <div class="infoTitle" id="infoTitle">Click on a concept to see details</div>
+            <div class="infoContent" id="infoContent">Select any node in the mind map to display detailed information about that concept.</div>
+        </div>
+        
+        <div class="legend">
+            <div class="legendItem">
+                <div class="legendBox red"></div>
+                <span>Big Picture Concepts</span>
+            </div>
+            <div class="legendItem">
+                <div class="legendBox blue"></div>
+                <span>Major Categories</span>
+            </div>
+            <div class="legendItem">
+                <div class="legendBox green"></div>
+                <span>Components &amp; Details</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showInfo(title, content) {
+            document.getElementById("infoPanel").style.display = "block";
+            document.getElementById("infoTitle").textContent = title;
+            document.getElementById("infoContent").innerHTML = content;
+        }
+    </script>
+</body>
+</html>
